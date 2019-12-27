@@ -2,7 +2,7 @@
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   padding: 2vmin;
   height: calc(100% - 4vmin);
   width: calc(100% - 4vmin);

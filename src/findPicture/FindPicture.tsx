@@ -34,10 +34,13 @@ const Card = (props: {
 };
 
 function getInitialState() {
-  const colors = [getRandomColor(), getRandomColor()];
-  const animals = [getRandomAnimal(), getRandomAnimal()];
-  const cards = colors.flatMap(color =>
-    animals.map(animal => ({ color, animal, i: 0, isBack: false }))
+  const animals = [getRandomAnimal(), getRandomAnimal(), getRandomAnimal()];
+  const cards = animals.flatMap(
+    animal => {
+      const color = getRandomColor();
+      const card = { color, animal, i: 0, isBack: false };
+      return [{...card}, {...card}]
+    }
   );
   // https://stackoverflow.com/a/12646864
   for (let i = cards.length - 1; i > 0; i--) {
@@ -45,7 +48,7 @@ function getInitialState() {
     [cards[i], cards[j]] = [cards[j], cards[i]];
   }
   cards.forEach((x, i) => (x.i = i));
-  return { colors, animals, cards };
+  return { animals, cards };
 }
 
 const initalState = getInitialState();
@@ -80,7 +83,6 @@ const FindPicture: React.FC = () => {
   const [state, dispatch] = useImmerReducer(reducer, initalState);
   console.log(JSON.stringify(state.cards), dispatch);
   const onClick = (i: number) => () => {
-    console.log(i, 123);
     dispatch({ type: "tiggle", i });
   };
   return (
