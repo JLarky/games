@@ -5,23 +5,29 @@ import "./FindPicture.css";
 
 import { getRandomAnimal, Animal } from "../animals";
 import { getRandomColor } from "../colors";
+import useDebounce from "../useDebounce";
 
 const Card = (props: {
   color: string;
   animal: Animal;
   isBack: boolean;
+  isSolved: boolean;
   onClick: () => void;
 }) => {
-  const { color, animal, isBack, onClick } = props;
+  const { color, animal, isBack, isSolved, onClick } = props;
   const icon = require("../assets/svg/" + animal + ".svg");
   // const [isBack, setIsBack] = React.useState(false);
   const toggle = () => {
     // setIsBack(!isBack);
     onClick();
   };
+  const wasSolved = useDebounce(isSolved, 1000);
+  if (wasSolved) {
+    return <div />;
+  }
   return (
     <div className="flip-card-wrapper" onTouchStart={toggle}>
-      <div className={`flip-card ${isBack ? "is-flipped" : ""}`}>
+      <div className={`flip-card ${isBack || isSolved ? "is-flipped" : ""}`}>
         <div className="flip-card-inner">
           <div className="flip-card-front"></div>
           <div className="flip-card-back" style={{ backgroundColor: color }}>
@@ -35,13 +41,11 @@ const Card = (props: {
 
 function getInitialState() {
   const animals = [getRandomAnimal(), getRandomAnimal(), getRandomAnimal()];
-  const cards = animals.flatMap(
-    animal => {
-      const color = getRandomColor();
-      const card = { color, animal, i: 0, isBack: false };
-      return [{...card}, {...card}]
-    }
-  );
+  const cards = animals.flatMap(animal => {
+    const color = getRandomColor();
+    const card = { color, animal, i: 0, isBack: false, isSolved: false };
+    return [{ ...card }, { ...card }];
+  });
   // https://stackoverflow.com/a/12646864
   for (let i = cards.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -58,17 +62,25 @@ type Action = { type: "tiggle"; i: number };
 function reducer(draft: typeof initalState, action: Action) {
   if (action.type === "tiggle") {
     draft.cards[action.i].isBack = !draft.cards[action.i].isBack;
-    let sum = 0;
+    let animals = [] as string[];
     draft.cards.forEach(x => {
       if (x.isBack) {
-        sum++;
+        animals.push(x.animal);
       }
     });
-    if (sum > 2) {
+    if (animals.length > 2) {
       draft.cards.forEach(x => {
         x.isBack = false;
       });
       draft.cards[action.i].isBack = true;
+    }
+    if (animals.length === 2 && animals[0] === animals[1]) {
+      draft.cards.forEach(x => {
+        if (x.isBack) {
+          x.isSolved = true;
+          x.isBack = false;
+        }
+      });
     }
   }
   return draft;
@@ -93,6 +105,7 @@ const FindPicture: React.FC = () => {
           animal={x.animal}
           color={x.color}
           isBack={x.isBack}
+          isSolved={x.isSolved}
           onClick={onClick(x.i)}
         />
       ))}
