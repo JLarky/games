@@ -7,6 +7,8 @@ import { getRandomAnimal, Animal } from "../animals";
 import { getRandomColor } from "../colors";
 import useDebounce from "../useDebounce";
 
+const checkmark = require("../assets/checkmark.svg");
+
 const Card = (props: {
   color: string;
   animal: Animal;
@@ -40,7 +42,7 @@ const Card = (props: {
 };
 
 function getInitialState() {
-  const animals = [getRandomAnimal(), getRandomAnimal(), getRandomAnimal()];
+  const animals = [getRandomAnimal(), getRandomAnimal(), getRandomAnimal(), getRandomAnimal(), getRandomAnimal(), getRandomAnimal()];
   const cards = animals.flatMap(animal => {
     const color = getRandomColor();
     const card = { color, animal, i: 0, isBack: false, isSolved: false };
@@ -52,20 +54,23 @@ function getInitialState() {
     [cards[i], cards[j]] = [cards[j], cards[i]];
   }
   cards.forEach((x, i) => (x.i = i));
-  return { animals, cards };
+  return { animals, cards, isSolved: false };
 }
 
 const initalState = getInitialState();
 
-type Action = { type: "tiggle"; i: number };
+type Action = { type: "tiggle"; i: number } | { type: "restart" };
 
 function reducer(draft: typeof initalState, action: Action) {
   if (action.type === "tiggle") {
     draft.cards[action.i].isBack = !draft.cards[action.i].isBack;
     let animals = [] as string[];
+    let hasUnsolved = false;
     draft.cards.forEach(x => {
       if (x.isBack) {
         animals.push(x.animal);
+      } else if (!x.isBack && !x.isSolved) {
+        hasUnsolved = true;
       }
     });
     if (animals.length > 2) {
@@ -82,6 +87,9 @@ function reducer(draft: typeof initalState, action: Action) {
         }
       });
     }
+    draft.isSolved = !hasUnsolved;
+  } else if (action.type === "restart") {
+    draft = { ...draft, ...getInitialState() };
   }
   return draft;
 }
@@ -97,18 +105,30 @@ const FindPicture: React.FC = () => {
   const onClick = (i: number) => () => {
     dispatch({ type: "tiggle", i });
   };
+  const onRestart = () => {
+    dispatch({ type: "restart" });
+  };
+  const wasSolved = useDebounce(state.isSolved, 1000);
   return (
     <div className="cards-grid">
-      {state.cards.map(x => (
-        <Card
-          key={x.i}
-          animal={x.animal}
-          color={x.color}
-          isBack={x.isBack}
-          isSolved={x.isSolved}
-          onClick={onClick(x.i)}
-        />
-      ))}
+      {wasSolved && state.isSolved ? (
+        <div className="restart" onTouchStart={onRestart}>
+          <div className="checkmark">
+            <img src={checkmark} alt="Great job" width="100%" />
+          </div>
+        </div>
+      ) : (
+        state.cards.map(x => (
+          <Card
+            key={x.i}
+            animal={x.animal}
+            color={x.color}
+            isBack={x.isBack}
+            isSolved={x.isSolved}
+            onClick={onClick(x.i)}
+          />
+        ))
+      )}
     </div>
   );
 };

@@ -1,8 +1,7 @@
 .cards-grid {
   overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   padding: 2vmin;
   height: calc(100% - 4vmin);
   width: calc(100% - 4vmin);
@@ -12,11 +11,39 @@
   padding: 2vmin;
 }
 
+.restart {
+  grid-row-end: 10;
+  grid-column-end: 10;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  animation: fadein 2s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.checkmark {
+  fill: green;
+  width: 50%;
+}
+
+.checkmark svg {
+  width: 100%;
+}
+
 .flip-card {
   height: 100%;
   width: 100%;
 }
-
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
