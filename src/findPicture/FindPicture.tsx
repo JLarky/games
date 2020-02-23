@@ -147,6 +147,7 @@ function loadCardsState() {
     const cards = JSON.parse(cardsJS);
     const state = { ...initalState };
     state.cards = cards;
+    state.isSolved = state.cards.every(x => x.isSolved);
     return state;
   }
   return initalState;
