@@ -7,7 +7,7 @@
   width: calc(100% - 4vmin);
 }
 
-.flip-card-wrapper {
+.cards-grid > div {
   padding: 2vmin;
 }
 
