@@ -76,8 +76,6 @@ function reducer(draft: typeof initalState, action: Action) {
     draft.cards.forEach(x => {
       if (x.isBack) {
         animals.push(x.animal);
-      } else if (!x.isBack && !x.isSolved) {
-        hasUnsolved = true;
       }
     });
     if (animals.length === 2 && animals[0] === animals[1]) {
@@ -94,6 +92,11 @@ function reducer(draft: typeof initalState, action: Action) {
       });
       draft.cards[action.i].isBack = true;
     }
+    draft.cards.forEach(x => {
+      if (!x.isBack && !x.isSolved) {
+        hasUnsolved = true;
+      }
+    });
     draft.isSolved = !hasUnsolved;
   } else if (action.type === "restart") {
     draft = { ...draft, ...getInitialState() };
