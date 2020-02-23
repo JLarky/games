@@ -72,7 +72,6 @@ function reducer(draft: typeof initalState, action: Action) {
   if (action.type === "tiggle") {
     draft.cards[action.i].isBack = !draft.cards[action.i].isBack;
     let animals = [] as string[];
-    let hasUnsolved = false;
     draft.cards.forEach(x => {
       if (x.isBack) {
         animals.push(x.animal);
@@ -92,12 +91,7 @@ function reducer(draft: typeof initalState, action: Action) {
       });
       draft.cards[action.i].isBack = true;
     }
-    draft.cards.forEach(x => {
-      if (!x.isBack && !x.isSolved) {
-        hasUnsolved = true;
-      }
-    });
-    draft.isSolved = !hasUnsolved;
+    draft.isSolved = draft.cards.every(x => x.isSolved);
   } else if (action.type === "restart") {
     draft = { ...draft, ...getInitialState() };
   }
