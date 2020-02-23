@@ -101,14 +101,17 @@ function reducer(draft: typeof initalState, action: Action) {
   return draft;
 }
 const FindPicture: React.FC = () => {
+  const firstState = loadCardsState();
   React.useEffect(() => {
     document.title = "Find Pictrure Game";
     window.addEventListener("beforeinstallprompt", e => {
       // Stash the event so it can be triggered later.
     });
   });
-  const [state, dispatch] = useImmerReducer(reducer, initalState);
-  console.log(JSON.stringify(state.cards), dispatch);
+  const [state, dispatch] = useImmerReducer(reducer, firstState);
+  React.useEffect(() => {
+    localStorage.setItem("cards", JSON.stringify(state.cards));
+  }, [state.cards]);
   const onClick = (i: number) => () => {
     dispatch({ type: "tiggle", i });
   };
@@ -139,5 +142,16 @@ const FindPicture: React.FC = () => {
     </div>
   );
 };
+
+function loadCardsState() {
+  const cardsJS = localStorage.getItem("cards");
+  if (cardsJS) {
+    const cards = JSON.parse(cardsJS);
+    const state = { ...initalState };
+    state.cards = cards;
+    return state;
+  }
+  return initalState;
+}
 
 export default FindPicture;
