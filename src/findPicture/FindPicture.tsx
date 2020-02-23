@@ -107,6 +107,7 @@ const FindPicture: React.FC = () => {
     window.addEventListener("beforeinstallprompt", e => {
       // Stash the event so it can be triggered later.
     });
+    window.oncontextmenu = () => false;
   }, []);
   const [state, dispatch] = useImmerReducer(reducer, firstState);
   React.useEffect(() => {
