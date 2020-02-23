@@ -71,25 +71,41 @@ type Action = { type: "tiggle"; i: number } | { type: "restart" };
 function reducer(draft: typeof initalState, action: Action) {
   if (action.type === "tiggle") {
     draft.cards[action.i].isBack = !draft.cards[action.i].isBack;
-    let animals = [] as string[];
-    draft.cards.forEach(x => {
-      if (x.isBack) {
-        animals.push(x.animal);
+    const openCardIndexes = draft.cards.reduce((acc, card, i) => {
+      if (card.isBack) {
+        acc.push(i);
       }
-    });
-    if (animals.length === 2 && animals[0] === animals[1]) {
-      draft.cards.forEach(x => {
-        if (x.isBack) {
-          x.isSolved = true;
-          x.isBack = false;
-        }
+      return acc;
+    }, [] as number[]);
+    const compare = ([i, j]: [number, number]) => {
+      return draft.cards[i].animal === draft.cards[j].animal;
+    };
+    const solve = (indexes: number[]) => {
+      indexes.forEach(i => {
+        draft.cards[i].isBack = false;
+        draft.cards[i].isSolved = true;
       });
+    };
+    if (openCardIndexes.length === 2) {
+      const [i1, i2] = openCardIndexes;
+      if (compare([i1, i2])) {
+        solve([i1, i2]);
+      }
     }
-    if (animals.length > 2) {
-      draft.cards.forEach(x => {
-        x.isBack = false;
-      });
-      draft.cards[action.i].isBack = true;
+    if (openCardIndexes.length === 3) {
+      const [i1, i2, i3] = openCardIndexes;
+      if (compare([i1, i2])) {
+        solve([i1, i2]);
+      } else if (compare([i2, i3])) {
+        solve([i2, i3]);
+      } else if (compare([i1, i3])) {
+        solve([i1, i3]);
+      } else {
+        draft.cards[i1].isBack = false;
+        draft.cards[i2].isBack = false;
+        draft.cards[i3].isBack = false;
+        draft.cards[action.i].isBack = true;
+      }
     }
     draft.isSolved = draft.cards.every(x => x.isSolved);
   } else if (action.type === "restart") {
