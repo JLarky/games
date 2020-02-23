@@ -42,7 +42,14 @@ const Card = (props: {
 };
 
 function getInitialState() {
-  const animals = [getRandomAnimal(), getRandomAnimal(), getRandomAnimal(), getRandomAnimal(), getRandomAnimal(), getRandomAnimal()];
+  const animals = [
+    getRandomAnimal(),
+    getRandomAnimal(),
+    getRandomAnimal(),
+    getRandomAnimal(),
+    getRandomAnimal(),
+    getRandomAnimal()
+  ];
   const cards = animals.flatMap(animal => {
     const color = getRandomColor();
     const card = { color, animal, i: 0, isBack: false, isSolved: false };
