@@ -80,12 +80,6 @@ function reducer(draft: typeof initalState, action: Action) {
         hasUnsolved = true;
       }
     });
-    if (animals.length > 2) {
-      draft.cards.forEach(x => {
-        x.isBack = false;
-      });
-      draft.cards[action.i].isBack = true;
-    }
     if (animals.length === 2 && animals[0] === animals[1]) {
       draft.cards.forEach(x => {
         if (x.isBack) {
@@ -93,6 +87,12 @@ function reducer(draft: typeof initalState, action: Action) {
           x.isBack = false;
         }
       });
+    }
+    if (animals.length > 2) {
+      draft.cards.forEach(x => {
+        x.isBack = false;
+      });
+      draft.cards[action.i].isBack = true;
     }
     draft.isSolved = !hasUnsolved;
   } else if (action.type === "restart") {
