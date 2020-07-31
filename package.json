@@ -21,6 +21,9 @@
     "typescript": "3.6.4",
     "use-immer": "^0.3.4"
   },
+  "installConfig": {
+    "pnp": true
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
