@@ -3,7 +3,7 @@ import ErrorBoundary from "react-error-boundary";
 
 import "./App.css";
 
-import FindPicture from "./findPicture/FindPicture";
+import { Pages } from "./Pages";
 
 class App extends React.Component<
   {},
@@ -32,7 +32,7 @@ class App extends React.Component<
           this.setState({ hasError: true });
         }}
       >
-        <FindPicture />
+        <Pages />
       </ErrorBoundary>
     ) : (
       <div style={{ display: "grid", height: "100%" }}>
