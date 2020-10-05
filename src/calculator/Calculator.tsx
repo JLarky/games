@@ -11,27 +11,28 @@ export const Calculator: React.FC = () => {
     value: undefined,
     prevValue: 0,
   });
+  const handleButton = (button: string | number) => {
+    if (typeof button === "number") {
+      setValue(({ value, prevValue }) => {
+        if (button === 0) {
+          if (value === 1) {
+            return { value: 10, prevValue };
+          }
+        }
+        return {
+          value: button,
+          prevValue: value !== undefined ? value : prevValue,
+        };
+      });
+    } else if (button === "+" || button === "-") {
+      setOp(button);
+    }
+  };
   return (
     <Layout
       left={[7, 4, 1, 0, 8, 5, 2, ".", 9, 6, 3]}
       right={["/", "x", "-", "+"]}
-      onClick={(button) => {
-        if (typeof button === "number") {
-          setValue(({ value, prevValue }) => {
-            if (button === 0) {
-              if (value === 1) {
-                return { value: 10, prevValue };
-              }
-            }
-            return {
-              value: button,
-              prevValue: value !== undefined ? value : prevValue,
-            };
-          });
-        } else if (button === "+" || button === "-") {
-          setOp(button);
-        }
-      }}
+      onClick={handleButton}
     >
       {calc.value !== undefined && (
         <>
