@@ -1,0 +1,40 @@
+.calc {
+  background: #f2f3f5;
+  color: #1c1d21;
+}
+
+.divider {
+  border: #dbdcde;
+}
+
+.button {
+  font-size: 6vw;
+  width: 15vw;
+  height: 15vw;
+}
+
+.button:focus,
+.button:hover,
+.button:active {
+  background: #d9dadc;
+}
+
+.blue {
+  color: #236fdf;
+}
+
+.wavesEffect {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1;
+  will-change: opacity, transform;
+  transition: 0.3s ease-out;
+}
