@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import style from "./Calculator.module.css";
 
@@ -28,6 +28,16 @@ export const Calculator: React.FC = () => {
       setOp(button);
     }
   };
+  useEffect(() => {
+    const listen = (ev: KeyboardEvent) => {
+      const num = parseInt(ev.key);
+      if (typeof num === "number" && !Number.isNaN(num)) {
+        handleButton(num);
+      }
+    };
+    window.addEventListener("keypress", listen);
+    return () => window.removeEventListener("keypress", listen);
+  }, []);
   return (
     <Layout
       left={[7, 4, 1, 0, 8, 5, 2, ".", 9, 6, 3]}
