@@ -3,20 +3,36 @@ import React, { useState } from "react";
 import style from "./Calculator.module.css";
 
 export const Calculator: React.FC = () => {
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [calc, setValue] = useState<{
+    value: number | undefined;
+    prevValue: number;
+  }>({
+    value: undefined,
+    prevValue: 0,
+  });
   return (
     <Layout
       left={[7, 4, 1, 0, 8, 5, 2, ".", 9, 6, 3]}
       right={["/", "x", "-", "+"]}
       onClick={(button) => {
         if (typeof button === "number") {
-          setValue(button);
+          setValue(({ value, prevValue }) => {
+            if (button === 0) {
+              if (value === 1) {
+                return { value: 10, prevValue };
+              }
+            }
+            return {
+              value: button,
+              prevValue: value !== undefined ? value : prevValue,
+            };
+          });
         }
       }}
     >
-      {value !== undefined && (
+      {calc.value !== undefined && (
         <>
-          1+{value}={1 + value}
+          {calc.prevValue}+{calc.value}={calc.prevValue + calc.value}
         </>
       )}
     </Layout>
