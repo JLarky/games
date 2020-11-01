@@ -5,12 +5,14 @@ import FindPicture from "./findPicture/FindPicture";
 
 export const Pages: React.FC = () => {
   const [game, setGame] = React.useState<
-    "picture" | "calculator" | "keyboard"
+    "picture" | "calculator" | "keyboard" | "clock"
   >();
   React.useEffect(() => {
     if (game === "keyboard") {
       window.location.href =
         "https://typing-for-kids.vercel.app/?dictionary=numbers";
+    } else if (game === "clock") {
+      window.location.href = "https://h2bcq.csb.app/";
     }
   });
 
@@ -18,7 +20,7 @@ export const Pages: React.FC = () => {
     return <FindPicture />;
   } else if (game === "calculator") {
     return <Calculator />;
-  } else if (game === "keyboard") {
+  } else if (game === "keyboard" || game === "clock") {
     return null;
   }
 
@@ -28,6 +30,7 @@ export const Pages: React.FC = () => {
         ["picture", "Pictures", "#37B6F6"],
         ["keyboard", "Typing practice", "#37B6F6"],
         ["calculator", "Calc", "#37B6F6"],
+        ["clock", "Clock", "#37B6F6"],
       ] as const).map(([section, label, color]) => (
         <button
           className="h-48 w-1/3"
