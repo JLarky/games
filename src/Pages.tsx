@@ -4,17 +4,29 @@ import { Calculator } from "./calculator/Calculator";
 import FindPicture from "./findPicture/FindPicture";
 
 export const Pages: React.FC = () => {
-  const [game, setGame] = React.useState<"picture" | "calculator">();
+  const [game, setGame] = React.useState<
+    "picture" | "calculator" | "keyboard"
+  >();
+  React.useEffect(() => {
+    if (game === "keyboard") {
+      window.location.href =
+        "https://typing-for-kids.vercel.app/?dictionary=numbers";
+    }
+  });
+
   if (game === "picture") {
     return <FindPicture />;
   } else if (game === "calculator") {
     return <Calculator />;
+  } else if (game === "keyboard") {
+    return null;
   }
 
   return (
     <div className="grid gap-10 py-10 container mx-auto text-3xl">
       {([
         ["picture", "Pictures", "#37B6F6"],
+        ["keyboard", "Typing practice", "#37B6F6"],
         ["calculator", "Calc", "#37B6F6"],
       ] as const).map(([section, label, color]) => (
         <button
