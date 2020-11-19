@@ -4,13 +4,10 @@ import { Calculator } from "./calculator/Calculator";
 import FindPicture from "./findPicture/FindPicture";
 
 export const Pages: React.FC = () => {
-  const [game, setGame] = React.useState<
-    "picture" | "calculator" | "keyboard" | "clock"
-  >();
+  const [game, setGame] = React.useState<"picture" | "calculator" | "keyboard" | "clock">();
   React.useEffect(() => {
     if (game === "keyboard") {
-      window.location.href =
-        "https://typing-for-kids.vercel.app/?dictionary=numbers";
+      window.location.href = "https://typing-for-kids.vercel.app/?dictionary=numbers";
     } else if (game === "clock") {
       window.location.href = "https://h2bcq.csb.app/";
     }

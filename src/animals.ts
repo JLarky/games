@@ -6,5 +6,5 @@ const animals = [
 export type Animal = typeof animals[keyof typeof animals];
 
 export function getRandomAnimal() {
-    return animals[Math.floor(Math.random()*animals.length)];
+  return animals[Math.floor(Math.random() * animals.length)];
 }

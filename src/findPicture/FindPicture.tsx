@@ -48,9 +48,9 @@ function getInitialState() {
     getRandomAnimal(),
     getRandomAnimal(),
     getRandomAnimal(),
-    getRandomAnimal()
+    getRandomAnimal(),
   ];
-  const cards = animals.flatMap(animal => {
+  const cards = animals.flatMap((animal) => {
     const color = getRandomColor();
     const card = { color, animal, i: 0, isBack: false, isSolved: false };
     return [{ ...card }, { ...card }];
@@ -81,7 +81,7 @@ function reducer(draft: typeof initalState, action: Action) {
       return draft.cards[i].animal === draft.cards[j].animal;
     };
     const solve = (indexes: number[]) => {
-      indexes.forEach(i => {
+      indexes.forEach((i) => {
         draft.cards[i].isBack = false;
         draft.cards[i].isSolved = true;
       });
@@ -107,7 +107,7 @@ function reducer(draft: typeof initalState, action: Action) {
         draft.cards[action.i].isBack = true;
       }
     }
-    draft.isSolved = draft.cards.every(x => x.isSolved);
+    draft.isSolved = draft.cards.every((x) => x.isSolved);
   } else if (action.type === "restart") {
     draft = { ...draft, ...getInitialState() };
   }
@@ -117,7 +117,7 @@ const FindPicture: React.FC = () => {
   const firstState = loadCardsState();
   React.useEffect(() => {
     document.title = "Find Pictrure Game";
-    window.addEventListener("beforeinstallprompt", e => {
+    window.addEventListener("beforeinstallprompt", (e) => {
       // Stash the event so it can be triggered later.
     });
     window.oncontextmenu = () => false;
@@ -142,7 +142,7 @@ const FindPicture: React.FC = () => {
           </div>
         </div>
       ) : (
-        state.cards.map(x => (
+        state.cards.map((x) => (
           <Card
             key={x.i}
             animal={x.animal}
@@ -163,7 +163,7 @@ function loadCardsState() {
     const cards = JSON.parse(cardsJS);
     const state = { ...initalState };
     state.cards = cards;
-    state.isSolved = state.cards.every(x => x.isSolved);
+    state.isSolved = state.cards.every((x) => x.isSolved);
     return state;
   }
   return initalState;

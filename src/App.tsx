@@ -14,13 +14,13 @@ class App extends React.Component<
 > {
   state = {
     errorBoundaryKey: 0,
-    hasError: false
+    hasError: false,
   };
 
   handleResetButtonClick = () =>
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       errorBoundaryKey: prevState.errorBoundaryKey + 1,
-      hasError: false
+      hasError: false,
     }));
 
   render() {
@@ -36,9 +36,7 @@ class App extends React.Component<
       </ErrorBoundary>
     ) : (
       <div style={{ display: "grid", height: "100%" }}>
-        <button onClick={this.handleResetButtonClick}>
-          reset error boundary
-        </button>
+        <button onClick={this.handleResetButtonClick}>reset error boundary</button>
       </div>
     );
   }

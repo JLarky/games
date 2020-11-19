@@ -48,10 +48,7 @@ export const Calculator: React.FC = () => {
         <>
           {calc.prevValue}
           {op}
-          {calc.value}=
-          {op === "+"
-            ? calc.prevValue + calc.value
-            : calc.prevValue - calc.value}
+          {calc.value}={op === "+" ? calc.prevValue + calc.value : calc.prevValue - calc.value}
         </>
       )}
     </Layout>
