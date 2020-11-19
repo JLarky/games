@@ -28,7 +28,7 @@ const Card = (props: {
     return <div />;
   }
   return (
-    <div className="flip-card-wrapper" onTouchStart={toggle}>
+    <div className="flip-card-wrapper" onPointerDown={toggle}>
       <div className={`flip-card ${isBack || isSolved ? "is-flipped" : ""}`}>
         <div className="flip-card-inner">
           <div className="flip-card-front"></div>
@@ -136,7 +136,7 @@ const FindPicture: React.FC = () => {
   return (
     <div className="cards-grid">
       {wasSolved && state.isSolved ? (
-        <div className="restart" onTouchStart={onRestart}>
+        <div className="restart" onPointerDown={onRestart}>
           <div className="checkmark">
             <img src={checkmark} alt="Great job" width="100%" />
           </div>
