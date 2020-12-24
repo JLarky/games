@@ -17,7 +17,7 @@ const Card = (props: {
   onClick: () => void;
 }) => {
   const { color, animal, isBack, isSolved, onClick } = props;
-  const icon = require("../assets/svg/" + animal + ".svg");
+  const icon = "/assets/svg/" + animal + ".svg";
   // const [isBack, setIsBack] = React.useState(false);
   const toggle = () => {
     // setIsBack(!isBack);
