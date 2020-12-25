@@ -1,10 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { setup } from "twind";
 import "twind/shim";
-import "./index.css";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
+
+setup({
+  theme: {
+    extend: {
+      fontFamily: {
+        serif:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+      },
+    },
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
