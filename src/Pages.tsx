@@ -30,6 +30,7 @@ export const Pages: React.FC = () => {
         ["clock", "Clock", "#37B6F6"],
       ] as const).map(([section, label, color]) => (
         <button
+          key={section}
           className="h-48 w-1/3"
           style={{ backgroundColor: color }}
           onClick={() => setGame(section)}
