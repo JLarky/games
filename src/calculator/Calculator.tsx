@@ -88,7 +88,7 @@ const Layout: React.FC<{
                 key={x}
                 className={`${style.button} ${
                   style.blue
-                } ${tw`focus:bg-blue-500 hover:bg-blue-500 active:bg-blue-500 rounded-full`}`}
+                } ${tw`bg-blue-500(hover:& focus:& active:&) rounded-full`}`}
                 onClick={() => onClick(x)}
               >
                 {x}
