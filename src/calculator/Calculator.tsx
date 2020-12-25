@@ -9,6 +9,16 @@ active:${() => ({ "&": { background: "#d9dadc" } })}
 hover:${() => ({ "&": { background: "#d9dadc" } })}
 `;
 
+const button = () => tw`
+${() => ({
+  "&": {
+    fontSize: "6vw",
+    width: "15vw",
+    height: "15vw",
+  },
+})}
+`;
+
 export const Calculator: React.FC = () => {
   const [op, setOp] = useState<"+" | "-">("+");
   const [calc, setValue] = useState<{
@@ -78,7 +88,7 @@ const Layout: React.FC<{
             return (
               <button
                 key={x}
-                className={`${style.button} ${style.wavesEffect} ${tw`rounded-full ${activeBg}`}`}
+                className={`${style.wavesEffect} ${tw`rounded-full ${button} ${activeBg}`}`}
                 onClick={() => onClick(x)}
               >
                 {x}
@@ -92,10 +102,12 @@ const Layout: React.FC<{
             return (
               <button
                 key={x}
-                className={`${style.button} ${tw`bg-blue-500(hover:& focus:& active:&)
+                className={tw`
+                bg-blue-500(hover:& focus:& active:&)
+                ${button}
                 ${() => ({ "&": { color: "#236fdf" } })}
                 rounded-full
-                `}`}
+                `}
                 onClick={() => onClick(x)}
               >
                 {x}
