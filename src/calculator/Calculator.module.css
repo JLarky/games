@@ -13,12 +13,6 @@
   height: 15vw;
 }
 
-.button:focus,
-.button:hover,
-.button:active {
-  background: #d9dadc;
-}
-
 .wavesEffect {
   position: relative;
   cursor: pointer;

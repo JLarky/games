@@ -3,6 +3,12 @@ import { tw } from "twind";
 
 import style from "./Calculator.module.css";
 
+const activeBg = () => tw`
+focus:${() => ({ "&": { background: "#d9dadc" } })}
+active:${() => ({ "&": { background: "#d9dadc" } })}
+hover:${() => ({ "&": { background: "#d9dadc" } })}
+`;
+
 export const Calculator: React.FC = () => {
   const [op, setOp] = useState<"+" | "-">("+");
   const [calc, setValue] = useState<{
@@ -72,7 +78,7 @@ const Layout: React.FC<{
             return (
               <button
                 key={x}
-                className={`${style.button} ${style.wavesEffect} ${tw`rounded-full`}`}
+                className={`${style.button} ${style.wavesEffect} ${tw`rounded-full ${activeBg}`}`}
                 onClick={() => onClick(x)}
               >
                 {x}
