@@ -79,8 +79,22 @@ const Layout: React.FC<{
 }> = ({ left, right, onClick, children }) => {
   return (
     <div className={`${style.calc} ${tw`h-screen flex flex-col`}`}>
-      <div className={tw`flex-1 text-right py-4 px-4 flex-none bg-white`}>
-        <div className={tw`text-5xl flex-none h-32 font-mono`}>{children}</div>
+      <div
+        className={tw`
+          flex-1 flex-none
+          py-4 px-4
+          bg-white
+          text-right 
+        `}
+      >
+        <div
+          className={tw`
+            flex-none h-32
+            text-5xl font-mono
+          `}
+        >
+          {children}
+        </div>
       </div>
       <div className={tw`flex-1 flex`}>
         <div className={tw`w-9/12 flex-none grid place-items-center grid-rows-4 grid-flow-col`}>
@@ -97,16 +111,22 @@ const Layout: React.FC<{
           })}
         </div>
         <div className={`${style.divider} ${tw`border-l-2`}`} />
-        <div className={tw`w-3/12 flex-1 grid place-items-center grid-rows-4 grid-flow-col`}>
+        <div
+          className={tw`
+            w-3/12 flex-1
+            grid grid-rows-4 grid-flow-col
+            place-items-center
+          `}
+        >
           {right.map((x) => {
             return (
               <button
                 key={x}
                 className={tw`
-                bg-blue-500(hover:& focus:& active:&)
-                ${button}
-                ${() => ({ "&": { color: "#236fdf" } })}
-                rounded-full
+                  bg-blue-500(hover:& focus:& active:&)
+                  ${button}
+                  ${() => ({ "&": { color: "#236fdf" } })}
+                  rounded-full
                 `}
                 onClick={() => onClick(x)}
               >
