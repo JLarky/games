@@ -5288,6 +5288,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"csstype@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "csstype@npm:3.0.5"
+  checksum: d15967edea15457961ab1e3f1c4080c83792a595055551a087923b2fb67fffaddaa2eedafe10f665d12dc3f493af03c08322c9410fcd58e3dcf48104de15043c
+  languageName: node
+  linkType: hard
+
 "cyclist@npm:^1.0.1":
   version: 1.0.1
   resolution: "cyclist@npm:1.0.1"
@@ -7137,6 +7144,7 @@ fsevents@^1.2.7:
     react-error-boundary: ^1.2.5
     react-refresh: ^0.9.0
     react-scripts: ^4.0.0
+    twind: ^0.9.0
     typescript: ^4.0.3
     use-immer: ^0.3.4
     web-vitals: ^0.2.4
@@ -14441,6 +14449,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"tiny-css-prefixer@npm:^1.1.4":
+  version: 1.1.4
+  resolution: "tiny-css-prefixer@npm:1.1.4"
+  checksum: 7a24f410efa10d614be4c3e10d96004423bb16c8a41f9650a1dc5519e778f896ca6a3c4ed9727dd98287f3870f7887be4647939aae3e693c40baa90cd24810d2
+  languageName: node
+  linkType: hard
+
 "tmp@npm:^0.0.33":
   version: 0.0.33
   resolution: "tmp@npm:0.0.33"
@@ -14631,6 +14646,16 @@ fsevents@^1.2.7:
   version: 0.14.5
   resolution: "tweetnacl@npm:0.14.5"
   checksum: e1c9d52e2e9f582fd0df9ea26ba5a9ab88b9a38b69625d8e55c5e8870a4832ac8c32f8854b41fce7b59f97258bb103535363f9eda7050aa70e75824b972c7dde
+  languageName: node
+  linkType: hard
+
+"twind@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "twind@npm:0.9.0"
+  dependencies:
+    csstype: ^3.0.5
+    tiny-css-prefixer: ^1.1.4
+  checksum: 5e0d5d50595224c52e0043de1d6f8e55cd0339c64a9708f1b31a3c4a6e414b74030ee2a5de083e23deb40de44a534bf8155cd366108de2c038de290bd1970d6f
   languageName: node
   linkType: hard
 

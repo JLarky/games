@@ -19,6 +19,7 @@
     "react-error-boundary": "^1.2.5",
     "react-refresh": "^0.9.0",
     "react-scripts": "^4.0.0",
+    "twind": "^0.9.0",
     "typescript": "^4.0.3",
     "use-immer": "^0.3.4",
     "web-vitals": "^0.2.4",
