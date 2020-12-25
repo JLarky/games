@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { tw } from "twind";
 
 import style from "./Calculator.module.css";
 
@@ -61,17 +62,17 @@ const Layout: React.FC<{
   onClick: (button: string | number) => void;
 }> = ({ left, right, onClick, children }) => {
   return (
-    <div className={`${style.calc} h-screen flex flex-col`}>
-      <div className="flex-1 text-right py-4 px-4 flex-none bg-white">
-        <div className="text-5xl flex-none h-32 font-mono">{children}</div>
+    <div className={`${style.calc} ${tw`h-screen flex flex-col`}`}>
+      <div className={tw`flex-1 text-right py-4 px-4 flex-none bg-white`}>
+        <div className={tw`text-5xl flex-none h-32 font-mono`}>{children}</div>
       </div>
-      <div className="flex-1 flex">
-        <div className="w-9/12 flex-none grid place-items-center grid-rows-4 grid-flow-col">
+      <div className={tw`flex-1 flex`}>
+        <div className={tw`w-9/12 flex-none grid place-items-center grid-rows-4 grid-flow-col`}>
           {left.map((x) => {
             return (
               <button
                 key={x}
-                className={`${style.button} ${style.wavesEffect} rounded-full`}
+                className={`${style.button} ${style.wavesEffect} ${tw`rounded-full`}`}
                 onClick={() => onClick(x)}
               >
                 {x}
@@ -79,13 +80,15 @@ const Layout: React.FC<{
             );
           })}
         </div>
-        <div className={`${style.divider} border-l-2`} />
-        <div className="w-3/12 flex-1 grid place-items-center grid-rows-4 grid-flow-col">
+        <div className={`${style.divider} ${tw`border-l-2`}`} />
+        <div className={tw`w-3/12 flex-1 grid place-items-center grid-rows-4 grid-flow-col`}>
           {right.map((x) => {
             return (
               <button
                 key={x}
-                className={`${style.button} ${style.blue} focus:bg-blue-500 hover:bg-blue-500 active:bg-blue-500 rounded-full`}
+                className={`${style.button} ${
+                  style.blue
+                } ${tw`focus:bg-blue-500 hover:bg-blue-500 active:bg-blue-500 rounded-full`}`}
                 onClick={() => onClick(x)}
               >
                 {x}

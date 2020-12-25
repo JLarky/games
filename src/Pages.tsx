@@ -1,4 +1,5 @@
 import React from "react";
+import { tw } from "twind";
 
 import { Calculator } from "./calculator/Calculator";
 import FindPicture from "./findPicture/FindPicture";
@@ -22,7 +23,7 @@ export const Pages: React.FC = () => {
   }
 
   return (
-    <div className="grid gap-10 py-10 container mx-auto text-3xl">
+    <div className={tw`grid gap-10 py-10 container mx-auto text-3xl`}>
       {([
         ["picture", "Pictures", "#37B6F6"],
         ["keyboard", "Typing practice", "#37B6F6"],
@@ -31,7 +32,7 @@ export const Pages: React.FC = () => {
       ] as const).map(([section, label, color]) => (
         <button
           key={section}
-          className="h-48 w-1/3"
+          className={tw`h-48 w-1/3`}
           style={{ backgroundColor: color }}
           onClick={() => setGame(section)}
         >
