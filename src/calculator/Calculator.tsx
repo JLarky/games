@@ -86,7 +86,8 @@ const Layout: React.FC<{
             return (
               <button
                 key={x}
-                className={`${style.button} ${style.blue} ${tw`bg-blue-500(hover:& focus:& active:&)
+                className={`${style.button} ${tw`bg-blue-500(hover:& focus:& active:&)
+                ${() => ({ "&": { color: "#236fdf" } })}
                 rounded-full
                 `}`}
                 onClick={() => onClick(x)}
