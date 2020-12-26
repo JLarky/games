@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { tw } from "twind";
+import { tw, InlineDirective } from "twind";
+import { css } from "twind/css";
 
 import style from "./Calculator.module.css";
 
-const activeBg = () => tw`
-focus:${() => ({ "&": { background: "#d9dadc" } })}
-active:${() => ({ "&": { background: "#d9dadc" } })}
-hover:${() => ({ "&": { background: "#d9dadc" } })}
+const blueBg = css({ background: "#d9dadc" });
+const activeBg: InlineDirective = ({ tw }) => tw`
+  focus:${blueBg} active:${blueBg} hover:${blueBg}
 `;
 
-const button = () => tw`
-${() => ({
-  "&": {
-    fontSize: "6vw",
-    width: "15vw",
-    height: "15vw",
-  },
-})}
-`;
+const button = css({
+  fontSize: "6vw",
+  width: "15vw",
+  height: "15vw",
+});
 
 export const Calculator: React.FC = () => {
   const [op, setOp] = useState<"+" | "-">("+");
