@@ -5,12 +5,16 @@ import { Calculator } from "./calculator/Calculator";
 import FindPicture from "./findPicture/FindPicture";
 
 export const Pages: React.FC = () => {
-  const [game, setGame] = React.useState<"picture" | "calculator" | "keyboard" | "clock">();
+  const [game, setGame] = React.useState<
+    "picture" | "calculator" | "keyboard" | "clock" | "allogator"
+  >();
   React.useEffect(() => {
     if (game === "keyboard") {
       window.location.href = "https://typing-for-kids.vercel.app/?dictionary=numbers";
     } else if (game === "clock") {
       window.location.href = "https://h2bcq.csb.app/";
+    } else if (game === "allogator") {
+      window.location.href = "http://tibordp.github.io/gator-calculus/";
     }
   });
 
@@ -29,6 +33,7 @@ export const Pages: React.FC = () => {
         ["keyboard", "Typing practice", "#37B6F6"],
         ["calculator", "Calc", "#37B6F6"],
         ["clock", "Clock", "#37B6F6"],
+        ["allogator", "Alligator", "#37B6F6"],
       ] as const).map(([section, label, color]) => (
         <button
           key={section}
