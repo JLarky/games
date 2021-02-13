@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { setup } from "twind";
+import * as colors from "twind/colors";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
@@ -12,6 +13,7 @@ setup({
         serif:
           '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
       },
+      colors,
     },
   },
 });
