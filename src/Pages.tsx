@@ -2,11 +2,12 @@ import React from "react";
 import { tw } from "twind";
 
 import { Calculator } from "./calculator/Calculator";
+import { Xylophone } from "./calculator/Xylophone";
 import FindPicture from "./findPicture/FindPicture";
 
 export const Pages: React.FC = () => {
   const [game, setGame] = React.useState<
-    "picture" | "calculator" | "keyboard" | "clock" | "allogator"
+    "picture" | "calculator" | "keyboard" | "clock" | "allogator" | "xylophone"
   >();
   React.useEffect(() => {
     if (game === "keyboard") {
@@ -22,6 +23,8 @@ export const Pages: React.FC = () => {
     return <FindPicture />;
   } else if (game === "calculator") {
     return <Calculator />;
+  } else if (game === "xylophone") {
+    return <Xylophone />;
   } else if (game === "keyboard" || game === "clock") {
     return null;
   }
@@ -34,6 +37,7 @@ export const Pages: React.FC = () => {
         ["calculator", "Calc", "#37B6F6"],
         ["clock", "Clock", "#37B6F6"],
         ["allogator", "Alligator", "#37B6F6"],
+        ["xylophone", "Xylophone", "#37B6F6"],
       ] as const).map(([section, label, color]) => (
         <button
           key={section}
