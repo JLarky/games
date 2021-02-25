@@ -2,7 +2,7 @@ import React from "react";
 import { tw } from "twind";
 
 import { Calculator } from "./calculator/Calculator";
-import { Xylophone } from "./calculator/Xylophone";
+import { Xylophone } from "./xylophone/Xylophone";
 import FindPicture from "./findPicture/FindPicture";
 
 export const Pages: React.FC = () => {
