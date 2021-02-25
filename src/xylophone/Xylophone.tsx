@@ -13,13 +13,21 @@ const notes = {
 };
 
 const songs = {
-  Cheburashka: `
+  Чебурашка: `
     sol,la,sol,mi,do,mi,re
     fa,sol,fa,re,fa,la,sol
     si,do2,si,sol,mi,sol,fa,fa,sol,fa,sol,la,si
     sol,do2,do2,sol,si,la,la
     fa,si,si,fa,la,sol,sol,si,la,fa
     sol,mi,sol,fa,re,mi,do
+  `,
+  "Два весёлых гуся": `
+    la,sol,fa,mi,si,si
+    la,sol,fa,mi,si,si
+    la,do2,do2,la,sol,si,si,sol
+    fa,sol,la,fa,mi,mi
+    la,do2,do2,la,sol,si,si,sol
+    fa,sol,la,fa,mi,mi
   `,
 };
 
