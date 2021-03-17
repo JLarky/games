@@ -7,7 +7,7 @@ import { getRandomAnimal, Animal } from "../animals";
 import { getRandomColor } from "../colors";
 import useDebounce from "../useDebounce";
 
-const checkmark = require("../assets/checkmark.svg");
+import checkmark from "../assets/checkmark.svg";
 
 const Card = (props: {
   color: string;
