@@ -72,6 +72,7 @@ const Layout: React.FC<{
   left: (string | number)[];
   right: string[];
   onClick: (button: string | number) => void;
+  children: React.ReactNode;
 }> = ({ left, right, onClick, children }) => {
   return (
     <div className={`${style.calc} ${tw`h-screen flex flex-col`}`}>

@@ -37,9 +37,13 @@ export const Xylophone: React.FC = () => {
   if (!song) {
     return (
       <div className={tw`grid gap-10 py-10 container mx-auto text-3xl`}>
-        {Object.entries(songs).map(([name, value]) => {
+        {Object.keys(songs).map((name) => {
           return (
-            <button key={name} className={tw`h-48 w-1/3 bg-blue-500`} onClick={() => setSong(name)}>
+            <button
+              key={name}
+              className={tw`h-48 w-1/3 bg-blue-500`}
+              onClick={() => setSong(name as unknown as keyof typeof songs)}
+            >
               {name}
             </button>
           );

@@ -26,7 +26,7 @@ class App extends React.Component<
     hasError: boolean;
   }
 > {
-  state = {
+  override state = {
     errorBoundaryKey: 0,
     hasError: false,
   };
@@ -37,9 +37,14 @@ class App extends React.Component<
       hasError: false,
     }));
 
-  render() {
-    return !this.state.hasError ? (
+  override render() {
+    return (
       <ErrorBoundary
+        fallbackRender={() => (
+          <div style={{ display: "grid", height: "100%" }}>
+            <button onClick={this.handleResetButtonClick}>reset error boundary</button>
+          </div>
+        )}
         key={this.state.errorBoundaryKey}
         onError={() => {
           localStorage.clear();
@@ -48,10 +53,6 @@ class App extends React.Component<
       >
         <Pages />
       </ErrorBoundary>
-    ) : (
-      <div style={{ display: "grid", height: "100%" }}>
-        <button onClick={this.handleResetButtonClick}>reset error boundary</button>
-      </div>
     );
   }
 }

@@ -18,7 +18,7 @@ const Card = (props: {
 }) => {
   const { color, animal, isBack, isSolved, onClick } = props;
   const icon = "/assets/svg/" + animal + ".svg";
-  const title = animal.toString().replace("_", " ");
+  const title = String(animal).replace("_", " ");
   // const [isBack, setIsBack] = React.useState(false);
   const toggle = () => {
     document.title = `find another ${animal}`;
