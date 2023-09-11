@@ -1,5 +1,5 @@
 ---
-import App from '../App'
+import App from '../App';
 
 ---
 
@@ -10,6 +10,7 @@ import App from '../App'
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Games</title>
+		{import.meta.env.DEV && <script type="module" src="/@vite-plugin-checker-runtime-entry"></script>}
 	</head>
 	<body>
 		<noscript>
