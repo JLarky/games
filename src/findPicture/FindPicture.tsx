@@ -3,11 +3,11 @@ import { useImmerReducer } from "use-immer";
 
 import "./FindPicture.css";
 
-import { getRandomAnimal, Animal } from "../animals";
+import { getRandomAnimal, type Animal } from "../animals";
 import { getRandomColor } from "../colors";
 import useDebounce from "../useDebounce";
 
-import checkmark from "../assets/checkmark.svg";
+import checkmark from "../assets/checkmark.svg?url";
 
 const Card = (props: {
   color: string;

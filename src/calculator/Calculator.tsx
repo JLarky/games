@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { tw, InlineDirective } from "twind";
+import { tw, type InlineDirective } from "twind";
 import { css } from "twind/css";
 
 import style from "./Calculator.module.css";
